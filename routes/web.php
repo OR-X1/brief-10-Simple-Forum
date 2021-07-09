@@ -19,14 +19,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/user', [App\Http\Controllers\HomeController::class, 'index'])->middleware('redirectionUser');
-Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->middleware('redirectionUser');
+Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 
-// Route::middleware(['redirectionUser'])->group(function () {
-//     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);  
-//     Route::get('/user', [App\Http\Controllers\UserController::class, 'index']);  
-//     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index']); 
-// });
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
-Route::get('/user', [App\Http\Controllers\UserController::class, 'index']);
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index']);
+Route::get('/details', function() {
+    return view('page.details');
+});
+
+
+
