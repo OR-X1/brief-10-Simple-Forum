@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\post;
+
 class HomeController extends Controller
 {
     /**
@@ -41,6 +43,10 @@ class HomeController extends Controller
         //     dd('hello mother f**ker');
         // }
         
-        return view('home');
+        // return view('home');
+
+        $movies = post::all();
+
+        return view('home', ['movies' => $movies]);
     }
 }

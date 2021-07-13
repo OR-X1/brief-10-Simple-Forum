@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\post;
 use Illuminate\Http\Request;
 
+use Auth;
+
 class PostController extends Controller
 {
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        // $movies = new post();
+
+        // $movies->all();
+
+        $movies = post::all();
+
+        return view('page.user', ['movies' => $movies]);
     }
 
     /**
@@ -35,7 +45,30 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'titre' => 'required',
+            'dateSort' => 'required',
+        ]);
+
+        $request->validate([
+            'image' => 'mimes:jpeg,bmp,png'
+        ]);
+
+        $movies = new post();
+
+        $movies->titre = $request->input('titre');
+        $movies->dateSort = $request->input('dateSort');
+        $image = $request->file('image');
+        $movies->user_id = Auth::user()->id;
+
+     $Moveimage = rand() . '.' . $image->getClientOriginalExtension();
+     $movies->image =$Moveimage;
+    $image->move(public_path('image'), $Moveimage);
+
+        $movies->save();
+
+        return redirect('admin');
     }
 
     /**

@@ -14,17 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
 
-Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
+Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('home');
+Route::get('/user', [App\Http\Controllers\PostController::class, 'index'])->name('user');
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 
-Route::get('/details', function() {
+
+Route::post('/admin/addPost', [App\Http\Controllers\PostController::class, 'store']);
+
+Route::get('/user/details', function() {
     return view('page.details');
-});
+})->name('details');
 
 
 
