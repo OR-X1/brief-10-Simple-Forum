@@ -4,45 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Models\post;
 use Illuminate\Http\Request;
-
+ 
 use Auth;
 
 class PostController extends Controller
 {
 
-    
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         // $movies = new post();
 
         // $movies->all();
-
         $movies = post::all();
+        if(isset(Auth::user()->role) && (Auth::user()->role=='admin')){
+              
+            return view('page.admin', ['movies' => $movies]);
+        }
 
-        return view('page.user', ['movies' => $movies]);
+        return view('home', ['movies' => $movies]);
+        
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
 
@@ -71,48 +58,38 @@ class PostController extends Controller
         return redirect('admin');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(post $post)
+
+    public function edit($id)
     {
-        //
+        $movie = post::find($id);
+
+        // $movie = post::all();
+
+        return view('page.update', ['movie' => $movie ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(post $post)
+    public function update(Request $request, $id)
     {
-        //
+        $movie = post::find($id);
+
+        $movie->titre = $request->input('titre');
+        $movie->dateSort = $request->input('dateSort');
+
+        $image = $request->file('image');
+
+        $Moveimage = rand() . '.' . $image->getClientOriginalExtension();
+        $movie->image =$Moveimage;
+        $image->move(public_path('image'), $Moveimage);
+
+        $movie->save();
+        return redirect('admin');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, post $post)
+    public function destroy($id)
     {
-        //
-    }
+        $movies = post::find($id);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(post $post)
-    {
-        //
+        $movies->delete();
+        return redirect('admin');
     }
 }

@@ -19,7 +19,7 @@
                         </div>
                     @endif
                     <div class="container  d-flex justify-content-center mt-100">
-                        <div class="row">
+                        <div class="row w-100">
                             
                             {{-- @foreach ($movies as $movie)
                                 <div class="col-md-3">
@@ -38,10 +38,8 @@
                                 </div>
                             @endforeach --}}
                             
-
                             @foreach ($movies as $movie)
-                            
-                                <div class="col-md-3">
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="product-wrapper mb-45 text-center">
                                         <a href="{{ route('details') }}">
                                             <div class="product-img" style="background-image: url('{{ url('image/'.$movie->image) }}');width: 250px;
@@ -52,14 +50,12 @@
                                                 <div class="product-action">
                                                     <div class="product-action-style"> 
                                                         <p class="mx-3 my-0">{{ $movie->titre }} </p>
-                                                        
                                                     </div>
                                                 </div>
                                             </div>
                                         </a>
                                     </div>
                                 </div>
-                            
                             @endforeach
 
                         </div>

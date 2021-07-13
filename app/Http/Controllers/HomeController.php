@@ -45,8 +45,8 @@ class HomeController extends Controller
         
         // return view('home');
 
-        $movies = post::all();
+        // $movies = post::all();
 
-        return view('home', ['movies' => $movies]);
+        // return view('home', ['movies' => $movies]);
     }
 }

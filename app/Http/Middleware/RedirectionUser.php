@@ -23,7 +23,7 @@ class RedirectionUser
         }
         if ($request->user()->role == 'user')
         {
-            return redirect('/user');
+            return redirect('/');
             // return view('page.user');
         }
         if ($request->user()->role == NULL)

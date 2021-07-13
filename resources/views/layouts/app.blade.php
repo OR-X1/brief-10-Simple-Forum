@@ -24,6 +24,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link rel="stylesheet" href="{{ asset('css/dropify.css') }}">
+
     @stack('card') 
     @stack('details')
     @stack('admin')
@@ -95,5 +97,20 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="{{ asset('js/dropify.js')}}"></script>
+
+    <script>
+        $(document).ready(function () {
+      $('.dropify').dropify({
+        messages: {
+        'default': 'Image',
+        'replace': 'Image',
+        'remove':  'Supprimer',
+        'error':   'Error.'
+         }
+     });
+     });
+    </script>
 </body>
 </html>
