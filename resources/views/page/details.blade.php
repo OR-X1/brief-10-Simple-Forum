@@ -69,9 +69,17 @@
         <div class="media-block">
             <a class="media-left" href="#"><img class="img-circle rounded-circle mr-2 img-sm" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
             <div class="media-body">
-              <div class="mar-btm">
+              <div class="mar-btm position-relative">
                 <a href="#" class="btn-link text-semibold media-heading box-inline">{{$com->user()->name}}</a>
                 <p class="text-muted text-sm"><i class="fa fa-mobile fa-lg"></i> - From Mobile - {{$com->created_at}}</p>
+                <form action="{{ url('user/'.$com->id) }}" method="post" class="position-absolute" style="right: 0;top: 0%;}">
+                    {{ csrf_field() }}
+                    {{ method_field("DELETE") }}
+                    
+                    <input type="hidden" name="post_id" value="{{$movie->id}}">
+  
+                    <button type="submit" class="btn btn-sm btn-default btn-hover-danger text-danger" >delete</button>
+                </form>
               </div>
               <p>{{$com->comment}}</p>
               <div class="pad-ver">
@@ -85,7 +93,7 @@
       
       
             </div>
-          </div>
+        </div>
             
         @endforeach
 

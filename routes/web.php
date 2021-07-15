@@ -28,3 +28,5 @@ Route::get('/user/details/{id}', [App\Http\Controllers\PostController::class, 'd
 Route::get('/admin', [App\Http\Controllers\PostController::class, 'index'])->name('admin');
 Route::post('/user/comment', [App\Http\Controllers\CommentController::class, 'store'])->name('comment');
 
+Route::delete('/user/{id}', [App\Http\Controllers\CommentController::class, 'destroy']);
+
