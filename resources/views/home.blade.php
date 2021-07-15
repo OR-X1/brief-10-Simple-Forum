@@ -41,7 +41,7 @@
                             @foreach ($movies as $movie)
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="product-wrapper mb-45 text-center">
-                                        <a href="{{ route('details') }}">
+                                        <a href="{{ route('details',$movie->id) }}">
                                             <div class="product-img" style="background-image: url('{{ url('image/'.$movie->image) }}');width: 250px;
                                                 height: 322px;
                                                 background-size: cover;"> 

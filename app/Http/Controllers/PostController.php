@@ -68,6 +68,7 @@ class PostController extends Controller
         return view('page.update', ['movie' => $movie ]);
     }
 
+
     public function update(Request $request, $id)
     {
         $movie = post::find($id);
@@ -92,4 +93,14 @@ class PostController extends Controller
         $movies->delete();
         return redirect('admin');
     }
+
+    public function details($id)
+    {
+        $movie = post::find($id);
+        // $movie = post::all();
+        
+
+        return view('page.details', ['movie' => $movie ]);
+    }
+    
 }

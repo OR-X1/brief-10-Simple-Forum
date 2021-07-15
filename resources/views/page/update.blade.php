@@ -65,7 +65,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-12 text-right ms-auto">
-                                                            <a href="{{ url('admin') }}" type="submit" class="btn btn-rounded bg-success text-white mb-0">Cancel</a>
+                                                            <a href="{{ url('/admin') }}" type="submit" class="btn btn-rounded bg-success text-white mb-0">Cancel</a>
                                                             <button type="submit" class="btn btn-rounded bg-warning text-white mb-0">Update</button>
                                                         </div>
                                                     </div>

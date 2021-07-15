@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('user');
-Route::get('/admin', [App\Http\Controllers\PostController::class, 'index'])->name('admin');
+// Route::get('/admin', [App\Http\Controllers\PostController::class, 'index'])->name('admin');
 Route::get('/admin', [App\Http\Controllers\PostController::class, 'index'])->name('admin');
 
 Route::post('/admin/addPost', [App\Http\Controllers\PostController::class, 'store']);
@@ -20,6 +20,11 @@ Route::delete('/admin/{id}', [App\Http\Controllers\PostController::class, 'destr
 
 
 
-Route::get('/user/details', function() {
-    return view('page.details');
-})->name('details');
+Route::get('/user/details/{id}', [App\Http\Controllers\PostController::class, 'details'])->name('details');
+// Route::get('/user/details/{id}', function() {
+//     return view('page.details');
+// })->name('details');
+
+Route::get('/admin', [App\Http\Controllers\PostController::class, 'index'])->name('admin');
+Route::post('/user/comment', [App\Http\Controllers\CommentController::class, 'store'])->name('comment');
+

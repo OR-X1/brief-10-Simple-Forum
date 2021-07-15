@@ -29,6 +29,7 @@
     @stack('card') 
     @stack('details')
     @stack('admin')
+    @stack('comment')
 
 
     <style>
