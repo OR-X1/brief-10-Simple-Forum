@@ -16,10 +16,19 @@ class PostController extends Controller
 
         // $movies->all();
         $movies = post::all();
-        if(isset(Auth::user()->role) && (Auth::user()->role=='admin')){
+        // if(isset(Auth::user()->role) && (Auth::user()->role=='admin')){
               
             return view('page.admin', ['movies' => $movies]);
-        }
+        // }
+
+        // return view('home', ['movies' => $movies]);
+        
+    }
+
+    public function user()
+    {
+        $movies = post::all();
+        
 
         return view('home', ['movies' => $movies]);
         

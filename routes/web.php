@@ -6,9 +6,16 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('user');
-// Route::get('/admin', [App\Http\Controllers\PostController::class, 'index'])->name('admin');
+Route::get('/', [App\Http\Controllers\PostController::class, 'user'])->name('user');
 Route::get('/admin', [App\Http\Controllers\PostController::class, 'index'])->name('admin');
+
+
+// Route::middleware(['redirectionUser', 'auth' ])->group(function () {
+//     Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('user');
+//     Route::get('/admin', [App\Http\Controllers\PostController::class, 'index'])->name('admin');
+// });
+// ->middleware('redirectionUser')
+
 
 Route::post('/admin/addPost', [App\Http\Controllers\PostController::class, 'store']);
 
